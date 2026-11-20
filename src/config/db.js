@@ -11,9 +11,14 @@ const pool = mysql.createPool({
   // Enable SSL for Enzonic
   ssl: {},
 
-  waitForConnections: true,
-  connectionLimit: 10,
-  decimalNumbers: true,
+ waitForConnections: true,
+connectionLimit: 10,
+maxIdle: 2,
+idleTimeout: 10000,
+enableKeepAlive: true,
+keepAliveInitialDelay: 0,
+connectTimeout: 20000,
+decimalNumbers: true,
 });
 
 module.exports = pool;
