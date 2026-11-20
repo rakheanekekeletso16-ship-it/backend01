@@ -28,6 +28,6 @@ app.listen(port, async () => {
     await pool.query('SELECT 1');
     console.log('MySQL connection established.');
   } catch (error) {
-    console.error(`MySQL is unavailable (${error.message}). API will remain online and return 503 for database requests.`);
+    console.error('MySQL is unavailable:', error);
   }
 });
