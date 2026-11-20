@@ -7,8 +7,7 @@ const pool = mysql.createPool({
   port: Number(dbUrl.port || 3306),
   user: decodeURIComponent(dbUrl.username),
   password: decodeURIComponent(dbUrl.password),
-  database: decodeURIComponent(dbUrl.pathname.replace(/^\/+/, '')),
-
+ database: decodeURIComponent(dbUrl.pathname.slice(1)),
   // Enable SSL for Enzonic
   ssl: {},
 
