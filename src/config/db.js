@@ -1,24 +1,18 @@
+
 const mysql = require('mysql2/promise');
 
-const dbUrl = new URL(process.env.DATABASE_URL);
-
 const pool = mysql.createPool({
-  host: dbUrl.hostname,
-  port: Number(dbUrl.port || 3306),
-  user: decodeURIComponent(dbUrl.username),
-  password: decodeURIComponent(dbUrl.password),
- database: decodeURIComponent(dbUrl.pathname.slice(1)),
-  // Enable SSL for Enzonic
-  ssl: {},
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT || 3306),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 
- waitForConnections: true,
-connectionLimit: 10,
-maxIdle: 2,
-idleTimeout: 10000,
-enableKeepAlive: true,
-keepAliveInitialDelay: 0,
-connectTimeout: 20000,
-decimalNumbers: true,
+  waitForConnections: true,
+  connectionLimit: 5,
+  queueLimit: 0,
+  connectTimeout: 20000,
+  decimalNumbers: true
 });
 
 module.exports = pool;
